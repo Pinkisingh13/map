@@ -5,9 +5,9 @@ import 'package:map/viewmodel/homescreen_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() async{
-
-  await dotenv.load(fileName: '.env');
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load( fileName: '.env' );
+  runApp( const MyApp() );
 }
 
 class MyApp extends StatelessWidget {
@@ -16,9 +16,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => HomeScreenProvider()..initialize(),)
+        ChangeNotifierProvider(create: (context) => HomeScreenProvider(),)
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: "Map Integration",
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

@@ -1,4 +1,3 @@
-import 'package:flutter/rendering.dart';
 import 'package:geolocator/geolocator.dart';
 
 class LocationService {
@@ -25,8 +24,6 @@ bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     return throw Exception(
       'Location permissions are permanently denied, we cannot request permissions. Please enable them from app settings.');
   }
-  Position position = await Geolocator.getCurrentPosition(); 
-  debugPrint("$position");
   return await Geolocator.getCurrentPosition();
  
 }

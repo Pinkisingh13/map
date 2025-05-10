@@ -1,9 +1,20 @@
+import java.util.Properties
+import java.io.FileInputStream
 plugins {
     id("com.android.application")
     id("kotlin-android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
+
+val dotenv = Properties()
+val envFile = rootProject.rootDir.parentFile?.resolve(".env")
+if (envFile?.exists() == true) {
+    dotenv.load(FileInputStream(envFile))
+} else {
+    throw GradleException(".env file not found at ${envFile?.absolutePath}")
+}
+
 
 android {
     namespace = "com.example.map"
@@ -28,6 +39,8 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+
+        manifestPlaceholders["GOOGLE_MAP_API_KEY"] = dotenv["GOOGLE_MAP_API_KEY"] as String
     }
 
     buildTypes {
