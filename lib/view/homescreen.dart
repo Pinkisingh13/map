@@ -13,26 +13,39 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(title: Text("Home Screen")),
 
-        body: Consumer<HomeScreenProvider>(
-          builder: (context, controller, child) {
-            if (controller.currentLocation == null) {
-              return Center(
-                child: CircularProgressIndicator(color: Colors.black),
-              );
-            }
-            return Stack(
-              children: [
-                // MAP UI
-                GoogleMap(
-                  trafficEnabled: true,
-                  initialCameraPosition: CameraPosition(
-                    target: controller.currentLocation!,
+        body: SafeArea(
+          child: Consumer<HomeScreenProvider>(
+            builder: (context, controller, child) {
+              if (controller.currentLocation == null) {
+                return Center(
+                  child: CircularProgressIndicator(color: Colors.black),
+                );
+              }
+              return Stack(
+                children: [
+                  // MAP UI
+                  GoogleMap(
+                    mapType: MapType.normal,
+                    trafficEnabled: true,
+                    myLocationButtonEnabled: true,
+                    buildingsEnabled: true,
+                    compassEnabled: true,
+                    mapToolbarEnabled: true,
+                    myLocationEnabled: true,
+                    zoomControlsEnabled: true,
+                    zoomGesturesEnabled: true,
+                  markers: controller.markers,
+                
+                    initialCameraPosition: CameraPosition(
+                      target: controller.currentLocation!,
+                      zoom: 14,
+                    ),
                   ),
-                ),
-                // NAVIGATION BUTTON
-              ],
-            );
-          },
+                  // NAVIGATION BUTTON
+                ],
+              );
+            },
+          ),
         ),
       ),
     );
