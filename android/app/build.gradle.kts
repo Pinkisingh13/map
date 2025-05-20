@@ -7,15 +7,6 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-val dotenv = Properties()
-val envFile = rootProject.rootDir.parentFile?.resolve(".env")
-if (envFile?.exists() == true) {
-    dotenv.load(FileInputStream(envFile))
-} else {
-    throw GradleException(".env file not found at ${envFile?.absolutePath}")
-}
-
-
 android {
     namespace = "com.example.map"
     compileSdk = flutter.compileSdkVersion
@@ -39,8 +30,6 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
-
-        manifestPlaceholders["GOOGLE_MAP_API_KEY"] = dotenv["GOOGLE_MAP_API_KEY"] as String
     }
 
     buildTypes {
