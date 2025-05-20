@@ -1,6 +1,6 @@
 # Rider Route - Map Integration App
 
-A Flutter application for riders to visualise pickup points, warehouse locations, and navigate through an optimised route using Google Maps integration.
+A Flutter application for riders to visualise pickup points and warehouse locations, and navigate through an optimised route using Google Maps integration.
 
 ## Features
 
@@ -21,7 +21,7 @@ A Flutter application for riders to visualise pickup points, warehouse locations
 ## Usage
  1. **View Map:**
       - The app starts by showing your current location (blue marker).
-      - Pickup points are marked in red; warehouse in green.
+      - Pickup points are marked in red; the warehouse is in green.
 
  2. Interact with Markers:
       - Tap a pickup marker to see time slots, inventory, and instructions.
@@ -30,6 +30,12 @@ A Flutter application for riders to visualise pickup points, warehouse locations
 
  3. Navigate:
       - Press the "Navigate" button to open Google Maps with the full route.
+
+## Demo - Video (Click on the image)
+
+<a href="assets/videos/app_demo.mp4" style="display: inline-block; width: 45%;">
+  <img src="assets/videos/app_demo_thumbnail.png" alt="App Demo" width="60%" style="margin-right: 10px;">
+</a>
 
 ## ScreenShots
 <div align = "center">
