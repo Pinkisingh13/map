@@ -216,11 +216,18 @@ class HomeScreenProvider extends ChangeNotifier {
         allStops[i + 1].latitude,
         allStops[i + 1].longitude,
       );
+
       print("Api Key : $apiKey");
+       final waypoints = pickups
+          .map((p) => "${p.location.latitude},${p.location.longitude}")
+          .join('|');
       final result = await polylinePoints.getRouteBetweenCoordinates(
         googleApiKey: apiKey,
         request: PolylineRequest(
           origin: origin,
+           wayPoints: [
+            PolylineWayPoint(location: waypoints),
+           ],
           alternatives: true,
           destination: destination,
           mode: TravelMode.driving,
@@ -235,7 +242,7 @@ class HomeScreenProvider extends ChangeNotifier {
           Polyline(
             polylineId: PolylineId("segment_$i"),
             color: Colors.blue,
-            width: 5,
+            width: 4,
             points: segmentCoords,
           ),
         );
